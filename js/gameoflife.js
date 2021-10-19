@@ -2,6 +2,8 @@ function seed() {
   for (let i = 0; i < arguments.length; i++){
     return arguments[i];
   }
+  // Pluralsight solution
+  // return Array.prototype.slice.call(arguments);
 }
 
 function same([x, y], [j, k]) {
