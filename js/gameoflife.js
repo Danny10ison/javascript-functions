@@ -1,13 +1,9 @@
 function seed() {
-  for (let i = 0; i < arguments.length; i++){
-    return arguments[i];
-  }
-  // Pluralsight solution
-  // return Array.prototype.slice.call(arguments);
+  return Array.prototype.slice.call(arguments);
 }
 
 function same([x, y], [j, k]) {
-  return x === j && y === k;  // -
+  return x === j && y === k;
 }
 
 // The game state to search for `cell` is passed as the `this` value of the function.
@@ -55,8 +51,7 @@ const getNeighborsOf = ([x, y]) => [
 ];
 
 const getLivingNeighbors = (cell, state) => {
-  return getNeighborsOf(cell).
-    filter(n => contains.bind(state)(n));
+  return getNeighborsOf(cell).filter(n => contains.bind(state)(n));
 };
 
 function willBeAlive(cell, state) {
@@ -68,16 +63,16 @@ function willBeAlive(cell, state) {
   );
 }
 
-const calculateNext = (state) => {
+const calculateNext = (state) => { 
   const { bottomLeft, topRight } = corners(state);
   let result = [];
-  for (let y = topRight[1] + 1; y >= bottomLeft[1] - 1; y--) {
-    for (let x = bottomLeft[0] - 1; x <= topRight[0] + 1; x++) {
-      result = result.concat(willBeAlive([x, y], state) ? [[x, y]] : []);
+  for (let y = topRight[1] + 1; y >= bottomLeft[1] - 1; y--){
+    for (let x = bottomLeft[0] - 1; x <= topRight[0] + 1; x++){
+      result = result.concat(willBeAlive([x,y], state) ? [[x, y]] : []);
     }
   }
   return result;
-};
+}
 
 const iterate = (state, iterations) => {
   const states = [state];
